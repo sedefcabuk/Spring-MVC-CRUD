@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Lab Foy 5</title>
+	<link rel="stylesheet" 
+	      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <hr>
+    <h2>Şarkı Ekle</h2>
+    <form action="#" th:action="@{/saveSong}" th:object="${song}" method="POST">
+        <input type="text" th:field="*{artistName}" placeholder="Sanatçı(lar)" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{songName}" placeholder="Şarkı Adı" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{stream}" placeholder="Toplam Dinlenme" class="form-control mb-4 col-4">
+		<input type="text" th:field="*{date}" placeholder="Yayınlanma Tarihi" class="form-control mb-4 col-4">
+        <button type="submit" class="btn btn-info col-2">Kaydet</button>
+    </form>
+</div>
+</body>
+</html>

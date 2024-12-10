@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Lab 5</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            font-weight: normal;
+			padding: 5px;
+        }
+        .btn-custom {
+            font-size: 14px;
+            padding: 8px 15px;
+            margin-right: 5px;
+            border: none;
+            outline: none;
+        }
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-update {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-add:hover, .btn-update:hover, .btn-delete:hover {
+            opacity: 0.9;
+        }
+        .btn-sm {
+            font-size: 12px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-2">
+        <h4>SPOTİFYDA EN ÇOK DİNLENEN ŞARKILAR</h4>
+        <table class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Sıra</th>
+                    <th>Sanatçı(lar)</th>
+                    <th>Şarkı Adı</th>
+                    <th>Toplam Dinlenme(milyar)</th>
+					<th>Yayınlanma Tarihi</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="song : ${listSongs}">
+                    <td th:text="${song.id}"></td>
+                    <td th:text="${song.artistName}"></td>
+                    <td th:text="${song.songName}"></td>
+                    <td th:text="${song.stream}"></td>
+					<td th:text="${song.date}"></td>
+					<td>
+					    <form action="#" th:action="@{/showFormForUpdate/{id}(id=${song.id})}" method="get" style="display: inline-block;">
+					        <button class="btn btn-custom btn-update">Güncelle</button>
+					    </form>
+					    <form action="#" th:action="@{/deleteSong/{id}(id=${song.id})}" method="get" style="display: inline-block;">
+					        <button class="btn btn-custom btn-delete">Sil</button>
+					    </form>
+					</td>
+                </tr>
+            </tbody>
+        </table>
+		<form action="#" th:action="@{/showNewSongForm}" method="get"> 
+
+        <button
+                class="btn btn-custom btn-add btn-sm mb-3">Şarkı Ekle</button>
+		</form>
+    </div>
+</body>
+</html>
+

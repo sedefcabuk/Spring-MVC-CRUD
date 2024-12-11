@@ -17,7 +17,6 @@ public class SongController {
     @Autowired
     private SongService songService;
 
-    // Display the list of personnel
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("listSongs", songService.getAllSongs());
@@ -33,14 +32,12 @@ public class SongController {
 
     @PostMapping("/saveSong")
     public String saveSong(@ModelAttribute("song") Song song) {
-        // Save the newly added song to the database
         songService.saveSong(song);
         return "redirect:/";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-        // Retrieve the song from the service
         Song song = songService.getSongById(id);
 
         model.addAttribute("song", song);
@@ -49,7 +46,6 @@ public class SongController {
 
     @GetMapping("/deleteSong/{id}")
     public String deleteSong(@PathVariable(value = "id") long id) {
-        // Call the delete method of the service
         this.songService.deleteSongById(id);
         return "redirect:/";
     }
